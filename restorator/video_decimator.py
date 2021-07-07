@@ -1,6 +1,8 @@
 
 import cv2
 
+print(cv2.getBuildInformation())
+
 # path_video_src = "/home/interceptor/Документы/Git_repo_telesoft/DATA/videot_3/fish8_qa.mp4"
 path_video_src = "/home/interceptor/Документы/DATA/test5/fish4_1min.mp4"
 
@@ -19,9 +21,10 @@ frame_number = 0
 cap.set(cv2.CAP_PROP_POS_FRAMES, frame_number)  # optional
 success, frame = cap.read()
 # Writer
-# fourCodec = cv2.VideoWriter_fourcc('h', '2', '6', '4')
+# fourCodec = cv2.VideoWriter_fourcc(*'X264')
 # out = cv2.VideoWriter(path_video_dst, fourCodec, 10, (1280, 1280))
-# Define the codec and create VideoWriter object
+
+# Define codec: XVID for AVI format  and create VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 out = cv2.VideoWriter(path_video_dst, fourcc, 10.0, (1280,  1280))
 
