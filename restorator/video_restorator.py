@@ -6,10 +6,10 @@ import cv2
 # path_video_src = "/home/interceptor/Документы/DATA/test5/fish4_1min.mp4"
 path_video_src = "/home/interceptor/Документы/DATA/videot3/fish7_qa.mp4"
 
-
 # path_video_dst = "../resources/fish8_qa_restored.mp4"
 # path_video_dst = "/home/interceptor/Документы/Git_repo_telesoft/DATA/videot_3/fish8_tahoe.mp4"
 path_video_dst = "/home/interceptor/Документы/DATA/videot3/fish7_xvid_restoration.avi"
+
 
 def restrore_and_transcode(path_video_src, path_video_dst):
     capture = cv2.VideoCapture(path_video_src)
@@ -25,11 +25,15 @@ def restrore_and_transcode(path_video_src, path_video_dst):
     while (capture.isOpened()):
         ret, frame = capture.read()
 
-            # print("Frame write:" + str(ret))
-        cv2.imshow('frame', frame)
-        out.write(frame)
-        # else:
-        #     break  # Release all if complete
+        # print("Frame write:" + str(ret))
+
+        try:
+            cv2.imshow('frame', frame)
+            out.write(frame)
+        except BaseException as error:
+            print('An exception occurred: {}'.format(error))
+            print("frame not ok, or stream closed!")
+            break
 
         if cv2.waitKey(20) & 0xFF == ord('q'):
             break
